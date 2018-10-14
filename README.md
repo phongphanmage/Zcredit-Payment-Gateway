@@ -1,2 +1,4 @@
 # Zcredit-Payment-Gateway
 Z-Credit Payment Gateway | Magento 2 | https://www.z-credit.com/site/
+
+Integration Z-credit and Magento 2 platform
