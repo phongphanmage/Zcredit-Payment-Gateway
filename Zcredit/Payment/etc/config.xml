@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+ * Author: PhongPhan <phongphan.mage@gmail.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <zcredit_cc>
+                <active>0</active>
+                <title>Z-Credit Credit Card</title>
+                <model>ZcreditPaymentCcFacade</model>
+                <payment_action>authorize_capture</payment_action>
+                <allowspecific>0</allowspecific>
+                <order_status>processing</order_status>
+                <sort_order>10</sort_order>
+                <cctypes>AE,VI,MC,DI,JCB,CUP,DN,MI</cctypes>
+                <is_gateway>1</is_gateway>
+                <useccv>1</useccv>
+                <can_use_checkout>1</can_use_checkout>
+                <can_authorize>1</can_authorize>
+                <can_capture>1</can_capture>
+                <can_refund>1</can_refund>
+                <can_cancel>1</can_cancel>
+                <can_use_internal>1</can_use_internal>
+                <can_authorize_vault>1</can_authorize_vault>
+                <can_capture_vault>1</can_capture_vault>
+                <installments>1</installments>
+                <installments_number>12</installments_number>
+                <validate_cvv>1</validate_cvv>
+                <error_message>Something went wrong, your payment was REFUSED.</error_message>
+            </zcredit_cc>
+            <zcredit_cc_vault>
+                <model>ZcreditCcVaultFacade</model>
+                <title>Stored Cards (Z-Credit)</title>
+                <instant_purchase>
+                    <supported>1</supported>
+                </instant_purchase>
+            </zcredit_cc_vault>
+        </payment>
+    </default>
+</config>

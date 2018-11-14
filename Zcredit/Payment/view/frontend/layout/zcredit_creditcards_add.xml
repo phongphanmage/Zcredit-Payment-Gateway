@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Author: PhongPhan <phongphan.mage@gmail.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Zcredit\Payment\Block\Customer\SaveCard"
+                   name="zcredit_customer_add_card"
+                   cacheable="false"
+                   template="Zcredit_Payment::add_card.phtml"
+            />
+        </referenceContainer>
+    </body>
+</page>

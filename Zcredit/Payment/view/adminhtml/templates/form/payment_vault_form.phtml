@@ -1,0 +1,42 @@
+<?php
+/**
+ * @Author        : PhongPhan
+ * @Email         : <phongphan.mage@gmail.com>
+ * @Github        : https://github.com/phongphanmage
+ * @Date: 2018/11/07
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var Magento\Vault\Block\Form $block */
+$code = $block->escapeHtml($block->getMethodCode());
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$config = $objectManager->create('Zcredit\Payment\Gateway\Config\Config');
+?>
+<fieldset data-mage-init='{
+        "Magento_Vault/js/vault": {
+            "code": "<?= /* @noEscape */ $code ?>",
+            "fieldset": "payment_form_<?= /* @noEscape */ $code ?>"
+        }
+    }' class="admin__fieldset payment-method"
+          id="payment_form_<?= /* @noEscape */ $code ?>"
+          style="display:none"
+>
+    <input type="hidden" name="payment[public_hash]" id="<?= /* @noEscape */ $code ?>_public_hash" value="" />
+    <?= $block->getChildHtml() ?>
+    <?php if($config->getValue('validate_cvv')): ?>
+    <div class="field-number required admin__field _required">
+        <label class="admin__field-label" for="zcredit_vault_cvv">
+            <span><?= $block->escapeHtml(__('Card Verification Number')) ?></span>
+        </label>
+        <div class="admin__field-control" id="zcredit_vault_cc_admin">
+            <input type="text" title="Card Verification Number"
+                   class="zcredit_vault_admin_cvv validate-cc-cvn admin__control-cvn admin__control-text"
+                   id="zcredit_vault_cvv" name="payment[cvv_vault]" value="">
+        </div>
+    </div>
+    <?php endif; ?>
+
+</fieldset>
+
+

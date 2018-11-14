@@ -1,0 +1,67 @@
+<?php
+/**
+ * @Author        : PhongPhan
+ * @Email         : <phongphan.mage@gmail.com>
+ * @Github        : https://github.com/phongphanmage
+ * @Date: 2018/11/07
+ */
+
+$cards = $block->getCards();
+$icons = $block->getIcons();
+?>
+
+<div class="admin__page-section-title">
+    <span class="title"><?php /* @escapeNotVerified */ echo __('Manage Credit Cards | Z-Credit Gateway') ?></span>
+
+</div>
+<div class="admin__page-section-content">
+    <button onclick="window.location ='<?= $block->getUrl('zcredit_ad/cards/create',['customerId' => $block->getRequest()->getParam('id')]); ?>'" id="btn-zcredit-add"><?= __("Add Credit Card"); ?></button>
+    <div class="fieldset-wrapper">
+        <?php if ($cards->getSize()): ?>
+            <table cellspacing="0" class="admin__table-secondary">
+                <thead>
+                <tr>
+                    <th><?php echo $block->escapeHtml(__('Type')) ?></th>
+                    <th><?php echo $block->escapeHtml(__('Card Number')) ?></th>
+                    <th><?php echo $block->escapeHtml(__('Expired Date')) ?></th>
+                    <th><?php echo $block->escapeHtml(__('Action')); ?></th>
+                </tr>
+                </thead>
+                <tbody class="odd">
+                <?php foreach ($cards as $card): ?>
+                    <?php
+                        $paymentDetail = $block->decodeDetail($card->getDetails());
+                    ?>
+                    <tr>
+                        <td><?php $icon = $icons[strtoupper($paymentDetail['type'])]; ?>
+                            <img src="<?= $block->escapeUrl($icon['url']) ?>"
+                                 width="<?= $block->escapeHtml($icon['width']) ?>"
+                                 height="<?= $block->escapeHtml($icon['height']) ?>"
+                                 class="payment-icon" >
+                        </td>
+                        <td><?php echo 'xxxx-'.$paymentDetail['CardNumber']; ?></td>
+                        <td><?php echo $paymentDetail['expirationDate']; ?></td>
+                        <td><a href="<?= $block->getUrl('zcredit_ad/cards/delete', ['id' => $card->getId()])  ?>"
+                               onclick="return confirmDelete()" ><?= __("Delete"); ?></a></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else : ?>
+            <div class="message info empty">
+                <span><?php echo $block->escapeHtml(__('Customer doesn\'t have any saved cards.')) ?></span>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function confirmDelete() {
+        var answer = confirm("Are you sure ?")
+        if (answer){
+            return true;
+        }else {
+            return false;
+        }
+    }
+</script>

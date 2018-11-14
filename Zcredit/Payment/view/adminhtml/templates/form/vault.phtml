@@ -1,0 +1,34 @@
+<?php
+use Magento\Vault\Model\Ui\TokenUiComponentProviderInterface;
+/**
+ * @Author        : PhongPhan
+ * @Email         : <phongphan.mage@gmail.com>
+ * @Github        : https://github.com/phongphanmage
+ * @Date: 2018/11/07
+ */
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Framework\View\Element\Template $block */
+$details = $block->getData(TokenUiComponentProviderInterface::COMPONENT_DETAILS);
+$icon = $block->getData('icons')[strtoupper($details['type'])];
+$id = $block->escapeHtml($block->getData('id'));
+?>
+<div data-mage-init='{
+        "Zcredit_Payment/js/vault": {
+            "container": "payment_<?= /* @noEscape */ $id ?>",
+            "publicHash": "<?= $block->escapeHtml($block->getData(TokenUiComponentProviderInterface::COMPONENT_PUBLIC_HASH)) ?>",
+            "code": "<?= $block->escapeHtml($block->getData('code')) ?>"
+        }
+    }' id="payment_<?= /* @noEscape */ $id ?>" class="admin__field">
+    <div class="admin__field-control control">
+        <input type="radio" id="token_switcher_<?= /* @noEscape */ $id ?>" name="payment[token_switcher]"/>
+        <img src="<?= $block->escapeUrl($icon['url']) ?>"
+             width="<?= $block->escapeHtml($icon['width']) ?>"
+             height="<?= $block->escapeHtml($icon['height']) ?>"
+             class="payment-icon" >
+        <span><?= $block->escapeHtml(__('ending')) ?></span>
+        <span><?= $block->escapeHtml($details['maskedCC']) ?></span>
+        (<span><?= $block->escapeHtml(__('expires')) ?></span>:
+        <span><?= $block->escapeHtml($details['expirationDate']) ?></span>)
+    </div>
+</div>

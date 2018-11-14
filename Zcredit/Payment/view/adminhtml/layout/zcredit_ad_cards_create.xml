@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Author: PhongPhan <phongphan.mage@gmail.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Zcredit\Payment\Block\Adminhtml\Cards\News\Tabs" name="zcredit_ad_cards_edit_tabs">
+                <arguments>
+                    <argument name="id" xsi:type="string">zcredit_ad_cards_edit_tabs</argument>
+                    <argument name="dest_element_id" xsi:type="string">edit_form</argument>
+                    <argument name="title" xsi:type="string" translate="true">Credit Cards Information</argument>
+                </arguments>
+                <block class="Zcredit\Payment\Block\Adminhtml\Cards\News\Tab\General" name="zcredit_ad_cards_add_tab_general"/>
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">general</argument>
+                    <argument name="block" xsi:type="string">zcredit_ad_cards_add_tab_general</argument>
+                </action>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Zcredit\Payment\Block\Adminhtml\Cards\News" name="zcredit_ad_cards_add"/>
+        </referenceContainer>
+    </body>
+</page>

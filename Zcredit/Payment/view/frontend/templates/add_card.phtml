@@ -1,0 +1,75 @@
+<?php
+/**
+ * @Author        : PhongPhan
+ * @Email         : <phongphan.mage@gmail.com>
+ * @Github        : https://github.com/phongphanmage
+ * @Date: 2018/11/07
+ */
+
+?>
+<form class="form form-add-card" action="<?= $block->escapeUrl($block->getUrl('zcredit/creditcards/save')) ?>"
+      method="post"
+      id="zcredit-save-card-form-validate"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" autocomplete="off">
+    <fieldset class="fieldset info">
+        <?= $block->getBlockHtml('formkey') ?>
+        <legend class="legend"><span><?= $block->escapeHtml(__('Credit Card Information')) ?></span></legend><br>
+        <div class="field field-card-number required">
+            <label class="label" for="cardnumber"><span><?= $block->escapeHtml(__('Card Number')) ?></span></label>
+            <div class="control">
+                <input type="text" id="cardnumber" name="CardNumber" value="" title="Card Number" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+            </div>
+        </div>
+        <div class="field expmonths required">
+            <label class="label" for="expmonths"><span><?= $block->escapeHtml(__('Expiration Month')) ?></span></label>
+            <div class="control">
+                <select name="cc_exp_month" id="expmonths" class="required-entry" title="<?= $block->escapeHtml(__('Expiration Month')) ?><" data-validate="{'validate-select':true}" aria-required="true">
+                    <?php foreach( $block->getExpMonths() as $month => $label ): ?>
+                        <option value="<?= $month ?>"> <?= $label; ?> </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="field expyears required">
+            <label class="label" for="expyears"><span><?= $block->escapeHtml(__('Expiration Year')) ?></span></label>
+            <div class="control">
+                <select name="cc_exp_year" id="expyears" class="required-entry" title="<?= $block->escapeHtml(__('Expiration Year')) ?><" data-validate="{'validate-select':true}" aria-required="true">
+                    <?php foreach( $block->getExpYears() as $year => $label ): ?>
+                        <option value="<?= $year ?>"> <?= $label; ?> </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+        <div class="field field-cvv required">
+            <label class="label" for="cvv"><span><?= $block->escapeHtml(__('Card Verification Number')) ?></span></label>
+            <div class="control">
+                <input type="text" id="cvv" name="CVV" value="" title="CVV" class="input-text required-entry"
+                       data-validate="{'validate-cc-cvn':true}" aria-required="true">
+            </div>
+        </div>
+    </fieldset>
+    <fieldset class="fieldset" id="hide-add-card-field"></fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action save primary" title="<?= $block->escapeHtmlAttr(__('Save')) ?>"><span><?= $block->escapeHtml(__('Save')) ?></span></button>
+        </div>
+        <div class="secondary">
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Go back')) ?></span></a>
+        </div>
+    </div>
+</form>
+
+<script>
+    require([
+        "jquery",
+        "mage/mage"
+    ], function($){
+        var dataForm = $('#zcredit-save-card-form-validate');
+        var ignore = null;
+
+        dataForm.mage('validation', {
+            ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+        }).find('input:text').attr('autocomplete', 'off');
+
+    });
+</script>

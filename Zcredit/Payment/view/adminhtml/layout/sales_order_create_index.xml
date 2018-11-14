@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Author: PhongPhan <phongphan.mage@gmail.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order_create_billing_form">
+            <action method="setMethodFormTemplate">
+                <argument name="method" xsi:type="string">zcredit_cc</argument>
+                <argument name="template" xsi:type="string">Zcredit_Payment::form/cc.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="order_create_billing_form">
+            <action method="setMethodFormTemplate">
+                <argument name="method" xsi:type="string">zcredit_cc_vault</argument>
+                <argument name="template" xsi:type="string">Zcredit_Payment::form/payment_vault_form.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
