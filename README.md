@@ -1,5 +1,9 @@
 # Z-credit Payment Gateway | Magento 2 Integration
 
+=================================
+
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/phongphanmage)
+
 # Description:
 - Magento 2 Payment Gateway module integrate to Z-credit system | https://www.z-credit.com/
 - All communication with the gateway is done using SSL encryption and no confidential cardHolder data is ever stored on the Magento 2 website. 
