@@ -1,0 +1,21 @@
+{
+    "name": "zcredit/payment",
+    "description": "Zcredit Payment Gateway",
+    "require": {
+        "php": "~7.0.13|~7.1.0",
+        "magento/module-sales": "101.0.*",
+        "magento/module-payment": "100.2.*",
+        "magento/module-vault": "101.0.*",
+        "magento/module-checkout": "100.2.*"
+    },
+    "type": "magento2-module",
+    "version": "100.0.0",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Zcredit\\Payment\\": ""
+        }
+    }
+}
